@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Controle de Placas</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- EmailJS -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script type="text/javascript">
+  (function() {
+    emailjs.init("vPVpXFO3k8QblVbqr"); //  public key
+  })();
+</script>
+
+  <!-- jsPDF -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.min.js"></script>
+</head>
+<body>
+
+<div class="menu-btn" onclick="toggleMenu()">&#9776;</div>
+
+<div id="menu" class="menu-content">
+  <a href="#" onclick="mostrarPagina('inicioContainer'); toggleMenu();">Início</a>
+  <a href="#" onclick="mostrarPagina('cadastroContainer'); toggleMenu();">Cadastro</a>
+  <a href="#" onclick="mostrarPagina('autorizadosContainer'); toggleMenu();">Autorizados</a>
+  <a href="#" onclick="mostrarPagina('historicoContainer'); toggleMenu();">Histórico</a>
+  <a href="#" onclick="limparTudo(); toggleMenu();">Limpar Dados</a>
+</div>
+
+<div id="overlay" onclick="fecharPopup()"></div>
+<div id="popupCard">
+  <button class="fecharBtn" onclick="fecharPopup()">×</button>
+  <div id="popupConteudo"></div>
+</div>
+
+<!-- INÍCIO -->
+<div id="inicioContainer">
+  <h1>Controle de Placas</h1>
+  <p>Digite a placa para verificar:</p>
+  <!-- LIMITE DE 7 CARACTERES E MAIÚSCULO -->
+  <input type="text" id="placaInput" placeholder="Ex: ABC1234" maxlength="7" oninput="this.value = this.value.toUpperCase()">
+  <button onclick="verificarPlaca()">Verificar</button>
+  <div id="mensagem"></div>
+  <h2>Placas em andamento</h2>
+  <table>
+    <thead><tr><th>Placa</th><th>Nome</th><th>Entrada</th><th>Saída</th></tr></thead>
+    <tbody id="tabelaAndamento"></tbody>
+  </table>
+</div>
+
+<!-- CADASTROS -->
+<div id="cadastroContainer">
+  <h2>Cadastros</h2>
+  <div id="listaCadastros" class="lista"></div>
+</div>
+
+<!-- AUTORIZADOS -->
+<div id="autorizadosContainer">
+  <h2>Autorizados</h2>
+  <input type="text" id="pesquisaAut" placeholder="Pesquisar autorizado..." style="margin-bottom:10px; padding:5px; width:100%;">
+<div id="listaAutorizados"></div>
+  <div id="listaAutorizados" class="lista"></div>
+  <input type="text" id="nomeAutInput" placeholder="Nome">
+  <input type="text" id="placaAutInput" placeholder="Placa" maxlength="7" oninput="this.value=this.value.toUpperCase()">
+  <input type="text" id="rgcpfAutInput" placeholder="RG/CPF">
+  <button onclick="adicionarAutorizado()">Adicionar</button>
+ <button class="botaoExcluir" onclick="iniciarExclusaoAut()">Excluir</button>
+  <button class="botaoEditar" onclick="iniciarEdicaoAut()">Editar</button>
+</div>
+
+<!-- HISTÓRICO -->
+<div id="historicoContainer">
+  <h2>Histórico</h2>
+  <label for="dataFiltro">Selecionar data:</label>
+  <input type="date" id="dataFiltro">
+  <button onclick="filtrarHistorico()">Buscar</button>
+  <div id="listaHistorico" class="lista"></div>
+  <button id="exportBtn" onclick="exportarCSV()">Exportar CSV</button>
+  <button onclick="exportarPDF()">Exportar PDF</button>
+  <button onclick="enviarPDFManual()">Enviar por e-mail</button>
+</div>
+
+<!-- script principal -->
+<script src="script.js"></script>
+</body>
+</html>

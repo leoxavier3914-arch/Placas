@@ -1,0 +1,129 @@
+body { font-family: Arial, sans-serif; background: #f4f4f9; text-align: center; padding: 20px; margin:0; }
+h1 { color: #333; margin-top: 50px; }
+input, select, button { padding: 10px; margin: 8px; width: 90%; max-width: 300px; border: 1px solid #ccc; border-radius: 5px; }
+button { color: white; border: none; cursor: pointer; background: #4CAF50; }
+.entrada { background: #4CAF50; }
+.saida { background: #f44336; }
+.card { background: white; padding: 15px; margin-top: 15px; border-radius: 8px; box-shadow: 0px 2px 6px rgba(0,0,0,0.2); text-align: left; }
+.lista { margin-top:20px; }
+.item { border-bottom:1px solid #ddd; padding:8px; text-align:left; }
+#historicoContainer, #cadastroContainer, #autorizadosContainer, #inicioContainer { display:none; }
+.horaEntrada { color: green; font-weight: bold; }
+.horaSaida { color: red; font-weight: bold; }
+#mensagem { color: green; font-weight: bold; margin-top: 10px; }
+table { width: 100%; max-width: 600px; margin: 20px auto; border-collapse: collapse; }
+th, td { border: 1px solid #ddd; padding: 8px; text-align: center; }
+th { background-color: #f2f2f2; }
+.menu-btn { position: fixed; top: 10px; left: 10px; font-size: 30px; cursor: pointer; z-index: 1001; }
+.menu-content { position: fixed; top: 0; left: -250px; width: 250px; height: 100%; background: #333; color: white; overflow-x: hidden; transition: 0.3s; padding-top: 60px; z-index: 1000; }
+.menu-content a { padding: 10px 20px; text-decoration: none; display: block; color: white; font-weight: bold; }
+.menu-content a:hover { background: #575757; }
+.menu-open { left: 0; }
+#overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); z-index: 1001; display: none; }
+#popupCard { position: fixed; top: 15%; left: 50%; transform: translateX(-50%); background: white; padding: 25px 20px 20px 20px; width: 90%; max-width: 400px; border-radius: 10px; box-shadow: 0 8px 20px rgba(0,0,0,0.4); z-index: 1002; display: none; }
+#popupCard .fecharBtn { position: absolute; top: -10px; right: -120px; background: none; border: none; font-size: 26px; font-weight: bold; cursor: pointer; color: #f44336; }
+#exportBtn { background-color: #2196F3; }
+
+/* Lista de autorizados */
+#listaAutorizados {
+  margin-top: 20px;
+}
+
+/* Cada item da lista */
+#listaAutorizados .item {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: left; /* Texto à esquerda */
+}
+
+/* Efeito ao passar o mouse */
+#listaAutorizados .item:hover {
+  background-color: #f0f0f0;
+}
+
+/* Item selecionado */
+#listaAutorizados .item.selecionado {
+  border: 2px solid #4CAF50; /* borda verde */
+  background-color: #e8f5e9; /* fundo levemente verde */
+}
+
+.botaoExcluir {
+  background-color: #f44336; /* vermelho */
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.botaoExcluir:hover {
+  background-color: #d32f2f; /* vermelho mais escuro ao passar o mouse */
+}
+
+.botaoEditar {
+  background-color: #2196F3; /* vermelho */
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
+.item {
+  border-bottom:1px solid #ddd;
+  padding:8px;
+  text-align:left;
+  position: relative; /* adicionado aqui */
+}
+
+/* Item selecionado */
+.item.selecionado {
+  border: 2px solid #4CAF50;
+  border-radius: 5px;
+  background-color: #e0f7e0;
+}
+
+.item .menuSerra {
+  display: none; /* esconde por padrão */
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.item.selecionado .menuSerra {
+  display: block; /* só aparece quando o item está selecionado */
+}
+
+/* Submenu escondido por padrão */
+/* Submenu escondido por padrão */
+.item .submenu {
+  display: none;
+  position: absolute;
+  top: 50%;                /* centraliza em relação à serrinha */
+  right: 14px;
+  transform: translateY(-50%); /* centraliza verticalmente */
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  z-index: 1000;           /* garante que fique acima de outros itens */
+  min-width: 100px;
+}
+
+/* Itens do submenu */
+.item .submenu div {
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.item .submenu div:hover {
+  background-color: #f2f2f2;
+}
